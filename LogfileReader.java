@@ -10,11 +10,15 @@ import java.util.Scanner;
 
 /**
  * A class to read information from a file of web server accesses.
- * Currently, the log file is assumed to contain simply
- * date and time information in the format:
+ * ------------------para leer información de un archivo de servidor web tiene acceso.
+ * Currently, the log file is assumed to contain simply 
+ * ------------------En la actualidad, el archivo de registro se supone que contienen simplemente
+ * date and time information in the format:  
+ * ------------------Fecha y hora en el formato:
  *
  *    year month day hour minute
  * Log entries are sorted into ascending order of date.
+ * ------------------Las entradas de registro se clasifican en orden de fecha descendente
  * 
  * @author David J. Barnes and Michael KÃ¶lling.
  * @version 2011.07.31

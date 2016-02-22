@@ -1,6 +1,6 @@
 /**
- * Read web server data and analyse
- * hourly access patterns.
+ * Read web server data and analyse-------- Leer datos de servidor web y analizar
+ * hourly access patterns.----------------- Patrones de acceso por hora
  * 
  * @author David J. Barnes and Michael KÃ¶lling.
  * @version 2011.07.31
@@ -14,7 +14,7 @@ public class LogAnalyzer
 
     /**
      * Create an object to analyze hourly web accesses.
-     * Crear un objeto para analizar los accesos web por hora.
+     * -----------Crear un objeto para analizar los accesos web por hora.
      */
     public LogAnalyzer()
     { 
@@ -24,10 +24,25 @@ public class LogAnalyzer
         // Create the reader to obtain the data.
         reader = new LogfileReader();
     }
-
+    
+    /**
+     * Añade a la clase LogAnalyzer un nuevo constructor. Este constructor tendrá un parámetro consistente en el nombre
+     * del archivo de log a analizar. Usa la clase LogFileCreator para crear tu propio archivo de log y comprueba que puedes
+     * analizarlo con la clase LogAnalyzer.
+     * ------------------------------------------------------------------------------------------------------------------- 0070
+     */
+    public LogAnalyzer(String fileName){
+         // Create the array object to hold the hourly
+        // access counts.
+        hourCounts = new int[24];
+        // Create the reader to obtain the data.
+        reader = new LogfileReader(fileName);
+         
+    }
+    
     /**
      * Analyze the hourly access data from the log file.
-     * Analizar los datos de acceso por hora desde el archivo de registro.
+     * ------------Analizar los datos de acceso por hora desde el archivo de registro.
      */
     public void analyzeHourlyData()
     {
@@ -39,9 +54,10 @@ public class LogAnalyzer
     }
 
     /**
-     * Print the hourly counts.
-     * These should have been set with a prior
-     * call to analyzeHourlyData.
+     * Print the hourly counts.-------- -------------- Imprimir los recuentos por hora.
+     * These should have been set with a prior -------   Estos deberían haber sido fijado con un
+     * call to analyzeHourlyData. ---- ---------------   llamada antes de analizar Datos por hora
+     * ------------------------------------------------------------------------------- 0070
      */
     public void printHourlyCounts()
     {

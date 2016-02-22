@@ -3,6 +3,7 @@ import java.util.*;
 
 /**
  * A class for creating log files of random data.
+ * -----------Una clase para la creación de archivos de registro de datos aleatorios.
  * 
  * @author David J. Barnes and Michael KÃ¶lling
  * @version 2011.07.31

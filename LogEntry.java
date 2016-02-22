@@ -1,10 +1,10 @@
 import java.util.Calendar;
 
 /**
- * Store the data from a single line of a
- * web-server log file.
- * Individual fields are made available via
- * accessors such as getHour() and getMinute().
+ * Store the data from a single line of a ----------Almacenar los datos de una sola línea de un archivo de  
+ * web-server log file.  ---------------------------registro del servidor web
+ * Individual fields are made available via---------Los campos individuales se ponen a disposición a través de 
+ * accessors such as getHour() and getMinute().-----los evaluadores * como
  * 
  * @author David J. Barnes and Michael KÃ¶lling.
  * @version 2011.07.31

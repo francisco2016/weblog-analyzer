@@ -2,10 +2,11 @@ import java.util.Scanner;
 
 /**
  * Break up line from a web server log file into
- * its separate fields.
+ * ----------Romper la línea de un archivo de registro del servidor web en
+ * its separate fields.---------  * Sus campos separados.
  * Currently, the log file is assumed to contain simply
- * integer date and time information.
- * 
+ * ---------------En la actualidad, el archivo de registro se supone que contienen simplemente -----------
+ * ----------------Fecha y hora del número entero.
  * @author David J. Barnes and Michael Kolling.
  * @version 2008.03.30
  */
