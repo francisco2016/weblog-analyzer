@@ -11,7 +11,7 @@ public class LogAnalyzer
     private int[] hourCounts;
     // Use a LogfileReader to access the data.
     private LogfileReader reader;
-
+    private int contadorEntradas;
     /**
      * Create an object to analyze hourly web accesses.
      * -----------Crear un objeto para analizar los accesos web por hora.
@@ -23,6 +23,7 @@ public class LogAnalyzer
         hourCounts = new int[24];
         // Create the reader to obtain the data.
         reader = new LogfileReader();
+        contadorEntradas = 0;
     }
     
     /**
@@ -37,7 +38,15 @@ public class LogAnalyzer
         hourCounts = new int[24];
         // Create the reader to obtain the data.
         reader = new LogfileReader(fileName);
-         
+        contadorEntradas = 0; 
+    }
+    
+    /**
+     * se pueda ejecutar después del método analyzeHourlyData y que devuelva el número total de accesos al servidor web
+     * registrados en el archivo de log-------------- -----------------------------------------------------------------   0073
+     */ 
+    public int numberOfAccesses(){
+        return contadorEntradas;
     }
     
     /**
@@ -50,6 +59,7 @@ public class LogAnalyzer
             LogEntry entry = reader.next();//--se guarda un objeto LogEntry en la VL entry
             int hour = entry.getHour();    // --guardamos la hora de entrada en la VL hour ----------------------0069
             hourCounts[hour]++;          //la posición del Array suma 1, para saber la hora a la que ha habido una entrada
+            contadorEntradas++;
         }
     }
 
