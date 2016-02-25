@@ -11,6 +11,7 @@ public class LogAnalyzer
     private int[] hourCounts;
     // Use a LogfileReader to access the data.
     private LogfileReader reader;
+    //para guardar el nº de accesos al servidor web ------------------------------------------------------------------ 0073
     private int contadorEntradas;
     /**
      * Create an object to analyze hourly web accesses.
@@ -23,9 +24,9 @@ public class LogAnalyzer
         hourCounts = new int[24];
         // Create the reader to obtain the data.
         reader = new LogfileReader();
-        contadorEntradas = 0;
+        contadorEntradas = 0;//-----------------para guardar el nº de accesos al servidor web---------------------------- 0073
     }
-    
+
     /**
      * Añade a la clase LogAnalyzer un nuevo constructor. Este constructor tendrá un parámetro consistente en el nombre
      * del archivo de log a analizar. Usa la clase LogFileCreator para crear tu propio archivo de log y comprueba que puedes
@@ -33,20 +34,78 @@ public class LogAnalyzer
      * ------------------------------------------------------------------------------------------------------------------- 0070
      */
     public LogAnalyzer(String fileName){
-         // Create the array object to hold the hourly
+        // Create the array object to hold the hourly
         // access counts.
         hourCounts = new int[24];
         // Create the reader to obtain the data.
         reader = new LogfileReader(fileName);
-        contadorEntradas = 0; 
+        contadorEntradas = 0; //------------------------------------------------------------------------------------ 0073
     }
-    
+
     /**
      * se pueda ejecutar después del método analyzeHourlyData y que devuelva el número total de accesos al servidor web
      * registrados en el archivo de log-------------- -----------------------------------------------------------------   0073
+     * 
+     * teniendo en cuenta que el mt.analyzeHourlyData() analiza las entradas...
      */ 
     public int numberOfAccesses(){
-        return contadorEntradas;
+        return contadorEntradas;  //---------------muestra el nº de accesos al servidor web------------------------------- 0073
+    }
+    //      ---------------------------otra solución más elegante es la siguiente.
+    //     /**
+    //      * Devuelve el numero total de accesos al servidor registrados
+    //      * en el archivo de log
+    //      */
+    //     public int numberOfAccesses()
+    //     {
+    //         int numeroDeAccesos = 0;
+    //         int index = 0;
+    //         while(index < hourCounts.length)
+    //         {
+    //             numeroDeAccesos =numeroDeAccesos + hourCounts[index];
+    //             index++;
+    //         }
+    //         return numeroDeAccesos;  
+    //     }
+
+    	/**
+     * Devuelve a qué hora el servidor tuvo que responder a más peticiones.
+     * Si hay empate devuelve la última de las horas. Si no ha habido acceso,
+     * informa del hecho por pantalla y devuelve -1
+     */
+   /**
+     * Devuelve a qué hora el servidor tuvo que responder a más peticiones.
+     * Si hay empate devuelve la última de las horas. Si no ha habido acceso,
+     * informa del hecho por pantalla y devuelve -1
+     */
+   public int busiestHour()
+    {
+      	//Empezamos suponiendo que 0 es el valor más alto de peticiones por hora
+        int mayorNumeroPeticionesPorHora = 0;
+      	//Aqui registramos la hora con más peticiones...
+        int horaConMasAccesos = -1;
+      
+      	//Recorremos el array y, conforme vamos avanzando, si encontramos
+        //una cantidad de accesos más alta que la que tenemos registrada
+      	//como más alta, pisamos el valor antiguo y actualizamos la variable que
+        //nos informa de la hora con más accesos
+        for (int index = 0; index < hourCounts.length; index++) {
+          	//Ponemos mayor O IGUAL porque queremos que si hay empate 
+          	//se quede registrada la última horahoraConMasAccesos
+            if (hourCounts[index] >= mayorNumeroPeticionesPorHora) {
+              horaConMasAccesos = index;
+            	mayorNumeroPeticionesPorHora = hourCounts[index];
+            }        
+        }
+      
+      	//Si no ha habido accesos, se informa por pantalla
+      	if ( mayorNumeroPeticionesPorHora == 0) {
+          System.out.println("No ha habido accesos");
+          horaConMasAccesos = -1;
+      	}
+      
+      	//Devolvemos la hora con más accesos
+       	return horaConMasAccesos;
     }
     
     /**
