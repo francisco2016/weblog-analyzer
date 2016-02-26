@@ -13,6 +13,8 @@ public class LogAnalyzer
     private LogfileReader reader;
     //para guardar el nº de accesos al servidor web ------------------------------------------------------------------ 0073
     private int contadorEntradas;
+    //para poder luego añadir un par de métodos llamados analyzeDailyData y printDailyCounts 
+    private int[] dayCounts;  //--------------------------------------------------------------------- 0074
     /**
      * Create an object to analyze hourly web accesses.
      * -----------Crear un objeto para analizar los accesos web por hora.
@@ -24,7 +26,9 @@ public class LogAnalyzer
         hourCounts = new int[24];
         // Create the reader to obtain the data.
         reader = new LogfileReader();
-        contadorEntradas = 0;//-----------------para guardar el nº de accesos al servidor web---------------------------- 0073
+        contadorEntradas = 0;//-------para guardar el nº de accesos al servidor web---------------------------- 0073
+        // Almacenamos los accesos por dias
+        dayCounts = new int[31]; //--------------------------------------------------------------------------  0074
     }
 
     /**
@@ -40,6 +44,8 @@ public class LogAnalyzer
         // Create the reader to obtain the data.
         reader = new LogfileReader(fileName);
         contadorEntradas = 0; //------------------------------------------------------------------------------------ 0073
+        // Almacenamos los accesos por dias
+        dayCounts = new int[31]; //--------------------------------------------------------------------------  0074
     }
     
     /**
