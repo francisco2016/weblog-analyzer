@@ -41,9 +41,14 @@ public class LogAnalyzer
         reader = new LogfileReader(fileName);
         contadorEntradas = 0; //------------------------------------------------------------------------------------ 0073
     }
-
-    //  ejercicio corregido                                  777777777777777777777777777777777777777777777777777
-    public int quietestHour()
+    
+    /**
+     * se pued ejecutar después del método analyzeHourlyData y que devuelva la hora a la que el servidor estuvo menos
+     * sobrecargado. Si hay empate devuelve la última de las horas.
+     * Si no ha habido accesos informa del hecho por pantalla y devuelve -1.
+     * -----------------------------------------------------------------------------------------------  --------       0705
+     */
+    public int quietestHour()   //------------------------------------------------------------------------------- 0705
     {
         //Guardamos la hoa con menor numero de peticiones
         int horaConMenosPeticiones = 0;
@@ -71,6 +76,32 @@ public class LogAnalyzer
     }     
     
     /**
+     * Muestre por pantalla el período de dos horas consecutivas con más carga 
+     * del día y devuelva un entero con la primera hora de dicho periodo. Si 
+     * hay empate devuelve el último período. Si no ha habido accesos informa 
+     * del hecho por pantalla y devuelve -1.----------------------------------------------------- 0705
+     */
+    public int busiestTwoHour()//------------------------------------------------------------------------------- 0705
+    {
+      int horaInicialPeriodoConMasPeticiones = -1;
+      int mayorNumeroDePeticiones = 0;
+      
+      for(int hora = 0; hora < hourCounts.length; hora++) {
+        int	sumaDePeticionesDeDosHoras = hourCounts[hora] + hourCounts[(hora + 1) % 24];
+      	if (mayorNumeroDePeticiones <= sumaDePeticionesDeDosHoras) {
+      		mayorNumeroDePeticiones = sumaDePeticionesDeDosHoras;
+          horaInicialPeriodoConMasPeticiones = hora;
+        }
+      }
+      
+      if (horaInicialPeriodoConMasPeticiones == -1) {
+        System.out.println("No ha habido accesos");
+      }
+        
+      return horaInicialPeriodoConMasPeticiones;      
+    }   
+    
+    /**
      * se pueda ejecutar después del método analyzeHourlyData y que devuelva el número total de accesos al servidor web
      * registrados en el archivo de log-------------- -----------------------------------------------------------------   0073
      * 
@@ -96,44 +127,39 @@ public class LogAnalyzer
     //         return numeroDeAccesos;  
     //     }
 
-    	/**
+    /**
      * Devuelve a qué hora el servidor tuvo que responder a más peticiones.
      * Si hay empate devuelve la última de las horas. Si no ha habido acceso,
      * informa del hecho por pantalla y devuelve -1
      */
-   /**
-     * Devuelve a qué hora el servidor tuvo que responder a más peticiones.
-     * Si hay empate devuelve la última de las horas. Si no ha habido acceso,
-     * informa del hecho por pantalla y devuelve -1
-     */
-   public int busiestHour()
+    public int busiestHour()
     {
-      	//Empezamos suponiendo que 0 es el valor más alto de peticiones por hora
+        //Empezamos suponiendo que 0 es el valor más alto de peticiones por hora
         int mayorNumeroPeticionesPorHora = 0;
-      	//Aqui registramos la hora con más peticiones...
+        //Aqui registramos la hora con más peticiones...
         int horaConMasAccesos = -1;
       
-      	//Recorremos el array y, conforme vamos avanzando, si encontramos
+        //Recorremos el array y, conforme vamos avanzando, si encontramos
         //una cantidad de accesos más alta que la que tenemos registrada
-      	//como más alta, pisamos el valor antiguo y actualizamos la variable que
+        //como más alta, pisamos el valor antiguo y actualizamos la variable que
         //nos informa de la hora con más accesos
         for (int index = 0; index < hourCounts.length; index++) {
-          	//Ponemos mayor O IGUAL porque queremos que si hay empate 
-          	//se quede registrada la última horahoraConMasAccesos
+            //Ponemos mayor O IGUAL porque queremos que si hay empate 
+            //se quede registrada la última horahoraConMasAccesos
             if (hourCounts[index] >= mayorNumeroPeticionesPorHora) {
               horaConMasAccesos = index;
-            	mayorNumeroPeticionesPorHora = hourCounts[index];
+                mayorNumeroPeticionesPorHora = hourCounts[index];
             }        
         }
       
-      	//Si no ha habido accesos, se informa por pantalla
-      	if ( mayorNumeroPeticionesPorHora == 0) {
+        //Si no ha habido accesos, se informa por pantalla
+        if ( mayorNumeroPeticionesPorHora == 0) {
           System.out.println("No ha habido accesos");
           horaConMasAccesos = -1;
-      	}
+        }
       
-      	//Devolvemos la hora con más accesos
-       	return horaConMasAccesos;
+        //Devolvemos la hora con más accesos
+        return horaConMasAccesos;
     }
     
     /**
