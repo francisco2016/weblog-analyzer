@@ -242,6 +242,17 @@ public class LogAnalyzer
       }
         
     }
+    
+    /**
+     * Imprime los accesos que ha habido cada día-------------------------------------------------   0074
+     */
+      public void printDailyCounts ()
+      {
+        for(int cont = 1; dayCounts.length > cont; cont++ ) {
+           System.out.println("Dia " + (cont+ 1) + " : " + dayCounts[cont]);
+          
+        }
+      }
 }
 
 
