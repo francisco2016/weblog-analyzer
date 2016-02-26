@@ -79,9 +79,9 @@ public class LogAnalyzer
      * Muestre por pantalla el período de dos horas consecutivas con más carga 
      * del día y devuelva un entero con la primera hora de dicho periodo. Si 
      * hay empate devuelve el último período. Si no ha habido accesos informa 
-     * del hecho por pantalla y devuelve -1.----------------------------------------------------- 0705
+     * del hecho por pantalla y devuelve -1.
      */
-    public int busiestTwoHour()//------------------------------------------------------------------------------- 0705
+    public int busiestTwoHour()
     {
       int horaInicialPeriodoConMasPeticiones = -1;
       int mayorNumeroDePeticiones = 0;
@@ -100,6 +100,7 @@ public class LogAnalyzer
         
       return horaInicialPeriodoConMasPeticiones;      
     }   
+
     
     /**
      * se pueda ejecutar después del método analyzeHourlyData y que devuelva el número total de accesos al servidor web
