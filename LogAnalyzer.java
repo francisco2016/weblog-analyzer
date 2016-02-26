@@ -203,4 +203,34 @@ public class LogAnalyzer
     {
         reader.printData();  //imprime todas las líneas del archivo------------------------------------------------- 0069
     }
+    
+    /* Analyze the hourly accesses only in the given date
+         *
+     * @param day   The given day
+     * @param month The given month
+     * @param year  The given year
+     */
+        public void analizarAccesosPorHoraDeUnDia(int day, int month, int year)//------------------------------3º   0074
+    {
+        while(reader.hasNext()) {
+            LogEntry entry = reader.next();
+            if ((entry.getYear() == year) && 
+                (entry.getMonth() == month) && 
+                (entry.getDay() == day))
+            {
+              int hour = entry.getHour();
+              hourCounts[hour]++;
+            }
+        }      
+    }
 }
+
+
+
+
+
+
+
+
+
+
