@@ -42,6 +42,34 @@ public class LogAnalyzer
         contadorEntradas = 0; //------------------------------------------------------------------------------------ 0073
     }
 
+    //  ejercicio corregido                                  777777777777777777777777777777777777777777777777777
+    public int quietestHour()
+    {
+        //Guardamos la hoa con menor numero de peticiones
+        int horaConMenosPeticiones = 0;
+        //Guardamos aqui el menor numero de peticiones hasta el momento
+        int menorNumeroDePeticiones = hourCounts[0];
+
+        if (numberOfAccesses() == 0) {
+            horaConMenosPeticiones = -1;
+            System.out.println("No ha habido accesos");
+        }
+        else {
+            //Recorro el array donde estan guardados los accesos por hora
+            for(int hora = 1; hora < hourCounts.length; hora++) {
+                //Por cada elemento, si el numero de peticiones de esa hora es menor
+                //que el menor numero de peticiones que tenemos registrado...
+                if (menorNumeroDePeticiones >= hourCounts[hora]) {
+                    //Ponemos como menor numero de peticiones las de esta hora
+                    menorNumeroDePeticiones = hourCounts[hora];
+                    //Guardamos esta hora como la que menos peticiones ha tenido
+                    horaConMenosPeticiones = hora;
+                }
+            }
+        }
+        return horaConMenosPeticiones;
+    }     
+    
     /**
      * se pueda ejecutar después del método analyzeHourlyData y que devuelva el número total de accesos al servidor web
      * registrados en el archivo de log-------------- -----------------------------------------------------------------   0073
@@ -126,7 +154,7 @@ public class LogAnalyzer
      * Print the hourly counts.-------- -------------- Imprimir los recuentos por hora.
      * These should have been set with a prior -------   Estos deberían haber sido fijado con un
      * call to analyzeHourlyData. ---- ---------------   llamada antes de analizar Datos por hora
-     * ------------------------------------------------------------------------------- 0070
+     * --------------------------------------------------------------------------------------------------------- 0070
      */
     public void printHourlyCounts()
     {
